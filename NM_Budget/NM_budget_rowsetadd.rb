@@ -1,5 +1,6 @@
-#encoding : gbk
-$DEBUG = 1 
+#encoding:utf-8
+$DEBUG = 1
+$DEBUG = 1
 require 'selenium-webdriver'
 require 'rubygems'
 require './NM_login'
@@ -12,11 +13,11 @@ sleep 1
 temp=Template::Template.new
 temp.locate_budget_template()
 temp.locate_rowset()
-temp.rowset_add("HJ34","HJ34","项目各项费用")
-#添加行集
+temp.rowset_add("娴嬭瘯杩斿洖棣栭〉","娴嬭瘯杩斿洖棣栭〉","椤圭洰鍚勯」璐圭敤")
+#娣诲姞琛岄泦
 
-locate.rowadd("差旅费用",15,2)
-#locate.rowadd("会议费用",15,2)
-#locate.rowadd("招待费用",15,2)
-#locate.rowadd("出国费用",15,2)
+locate.rowadd("宸梾璐圭敤",15,2)
+locate.rowadd("浼氳璐圭敤",15,2)
+locate.rowadd("鎷涘緟璐圭敤",15,2)
+locate.rowadd("鍑哄浗璐圭敤",15,2)
 

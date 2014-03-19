@@ -1,166 +1,175 @@
-#encoding : gbk
+#encoding:utf-8
 $DEBUG =1
 require 'selenium-webdriver'
 require 'rubygems'
 require './NM_login'
 
 module Template
-     class Template
-	     def locate_budget_template()
-		     $driver.switch_to().frame("i_right")
-		     $driver.switch_to().frame("i_apply")
-		     $driver.find_element(:xpath,'//*[@id="8ad7c21a3b45dd2d013b461389b40008"]').click
-		     #Ê¹ÓÃÌø×ªiframeµÄ·½Ê½ÈÃseleniumÇ¿ÖÆ¼ÓÔØiframe
-		     $driver.find_element(:xpath,'//div[@id="8ad7c21a3b45dd2d013b461389b40008"]/ul/li[11]').click
-	             ##ÒÔÉÏ¶¨Î»Ô¤ËãÄ£°å¶¨Òå
-	     end
-	     def locate_columnset()
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.find_element(:xpath,'//*[@id="tab_1_li"]').click
-		     #ÒÔÉÏ¶¨Î»ĞÂÔöÁĞ¼¯
-	     end
-	     def locate_rowset()
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.find_element(:xpath,'//*[@id="tab_2_li"]').click
-	     end
-	     def columnset_add(cid,cname,layout_style=3)
-		     #ÆäÖĞ£¬cidÎªÁĞ¼¯±àºÅ£¬cnameÎªÁĞ¼¯Ãû³Æ£¬layout_styleÎª²¼¾Ö·½Ê½£¨1ÎªÈ«²¿£¬2Îª¶¯Ì¬ĞĞ£¬3Îª¹Ì¶¨ĞĞ£¬Ä¬ÈÏÎª3£©
-		     $driver.switch_to().frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
-		     #ÒÔÉÏ¶¨Î»ĞÂÔöÁĞ¼¯
-		     $driver.find_element(:xpath,'//*[@id="templateColumnSetNumber"]').send_keys(cid)
-		     $driver.find_element(:xpath,'//*[@id="templateColumnSetName"]').send_keys(cname)
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/select/option['+layout_style.to_s+']').click
-		     $driver.find_element(:xpath,'//*[@id="saveButton"]').click
-		     #ÊäÈë¶¥²ãÁĞ¼¯ĞÅÏ¢±£´æ
-	     end
-	     def rowset_add(rid,rname,rabove)
-		     #ridÎªĞĞ¼¯±àºÅ£¬rnameÎªĞĞ¼¯Ãû³Æ£¬raboveÎª¶¥¼¶ĞĞÃû³Æ
-		     $driver.switch_to().frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[4]/div/div[2]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
-		     #ÒÔÉÏ¶¨Î»ĞÂÔöĞĞ¼¯
-		     $driver.find_element(:xpath,'//*[@id="templateRowSetNumber"]').send_keys(rid)
-		     $driver.find_element(:xpath,'//*[@id="templateRowSetName"]').send_keys(rname)
-		     $driver.find_element(:xpath,'//*[@id="saveButton"]').click
-		     #ÊäÈë¶¥²ãĞĞ¼¯ĞÅÏ¢±£´æ
-		     $driver.switch_to.frame("iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/table/tbody/tr/td[2]/a').click
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="rowAbovePrompt"]').send_keys(rabove)
-		     $driver.find_element(:xpath,'/html/body/form/div/div/div[3]/table/tfoot/tr/td/center/button').click
-		     sleep 1
-	     end
-	     def rowadd(rlabel,rlength=15,rprecision=2,formula="")
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.switch_to.frame("iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/table/tbody/tr/td[2]/img[2]').click
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'//*[@id="rowLabel"]').send_keys(rlabel)#ĞĞ±êÌâ
-		     $driver.find_element(:xpath,'//*[@id="labelIndentation"]').send_keys(rlength)#±êÌâËõ½øÁ¿
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/span/input[2]').click#ÊÇ·ñÔÊĞíÊÖ¹¤ÌîĞ´
-		     $driver.find_element(:xpath,'//*[@id="numberPrecision"]').send_keys(rprecision)#Êı×Ö¾«¶È
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[5]/td[2]/span/input').click#²»ÆôÓÃ¼ÆËã
-		     $driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys(formula)#¼ÆËã¹«Ê½
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[6]/td[2]/span/input').click#ÆôÓÃÁĞÉÏµÄ¹«Ê½
-		     $driver.find_element(:xpath,'//*[@id="saveButtonId"]').click
-		     $driver.switch_to.alert().accept()
-		     sleep 1
-	     end
-	     def template_add(tid,tname,ttype=1,tbudget_type=2)
-		     #ttypeÎªÉÏ±¨Ä£°åºÍÏÂ´ïÄ£°å£¬tidÎªÄ£°å±àºÅ£¬tnameÎªÄ£°åÃû³Æ£¬tbudget_typeÎªÔ¤ËãÀàĞÍ
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click#ĞÂÔöÄ£°å
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="templateNumber"]').send_keys(tid)#Ä£°å±àºÅ
-		     $driver.find_element(:xpath,'//*[@id="templateName"]').send_keys(tname)#Ä£°åÃû³Æ
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/select/option['+ttype.to_s+']').click#Ä£°åÀàĞÍÔ¤¶¨Òå
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option['+tbudget_type.to_s+']').click#Ô¤ËãÀàĞÍ
-		     $driver.find_element(:xpath,'//*[@id="saveButton"]').click
-		     $driver.switch_to.alert().accept()
-		     sleep 2
-	     end
-	     def layout_stable_add(lid,lname,rowset,columnset)
-		     #lidÎª²¼¾Ö±àºÅ£¬lnameÎª²¼¾ÖÃû³Æ£¬rowsetÎªĞĞ¼¯Ãû£¬columnsetÎªÁĞ¼¯Ãû
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[3]/div/ul/li/img').click#ĞÂÔö²¼¾Ö
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="templateLayoutNumber"]').send_keys(lid)#²¼¾ÖÃû³Æ
-		     $driver.find_element(:xpath,'//*[@id="templateLayoutName"]').send_keys(lname)#²¼¾ÖÃû³Æ
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[3]').click#¹Ì¶¨ĞĞÄ£°å
-		     $driver.find_element(:xpath,'//*[@id="templateRowSetIdImg"]').click#Ñ¡ÔñĞĞ¼¯
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe1")
-		     $driver.find_element(:xpath,'//*[@id="templateRowSetNumber"]').send_keys(rowset)#ÊäÈëĞĞ¼¯±àºÅÈ·¶¨²éÑ¯
-		     $driver.find_element(:xpath,'//*[@id="searchButton"]').click
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#Ñ¡È¡ĞĞ¼¯
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="templateColumnSetIdImg"]').click#Ñ¡ÔñÁĞ¼¯
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe1")
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(columnset)#ÊäÈëÁĞ¼¯±àºÅ²éÑ¯
-		     $driver.find_element(:xpath,'//*[@id="searchButton"]').click
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#Ñ¡È¡ÁĞ¼¯
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="saveButton"]').click
-		     $driver.switch_to.alert().accept()
-		     sleep 2
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'//*[@id="refreshButton"]').click
-	     end
-	     def layout_dynamic_add(lid,lname,columnset)
-		     #lidÎª²¼¾Ö±àºÅ
-		     #lnameÎª²¼¾ÖÃû³Æ£¬columnsetÎªÁĞ¼¯Ãû
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'/html/body/form/div[3]/div/ul/li/img').click#ĞÂÔö²¼¾Ö
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="templateLayoutNumber"]').send_keys(lid)#²¼¾ÖÃû³Æ
-		     $driver.find_element(:xpath,'//*[@id="templateLayoutName"]').send_keys(lname)#²¼¾ÖÃû³Æ
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click
-		     $driver.find_element(:xpath,'//*[@id="templateColumnSetIdImg"]').click#Ñ¡ÔñÁĞ¼¯
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe1")
-		     $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(columnset)#ÊäÈëÁĞ¼¯±àºÅ²éÑ¯
-		     $driver.find_element(:xpath,'//*[@id="searchButton"]').click
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#Ñ¡È¡ÁĞ¼¯È·¶¨
-		     $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
-		     sleep 1
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("arch_popup_iframe0")
-		     $driver.find_element(:xpath,'//*[@id="saveButton"]').click
-		     $driver.switch_to.alert().accept()
-		     sleep 2
-		     $driver.switch_to.default_content()
-		     $driver.switch_to.frame("i_right")
-		     $driver.switch_to.frame("tab_inner_iframe")
-		     $driver.find_element(:xpath,'//*[@id="refreshButton"]').click
-	     end
-	     
-     end
+  class Template
+    def locate_budget_template()
+      $driver.switch_to().frame("i_right")
+      $driver.switch_to().frame("i_apply")
+      $driver.find_element(:xpath,'//*[@id="8ad7c21a3b45dd2d013b461389b40008"]').click
+      #ä½¿ç”¨è·³è½¬iframeçš„æ–¹å¼è®©seleniumå¼ºåˆ¶åŠ è½½iframe
+      $driver.find_element(:xpath,'//div[@id="8ad7c21a3b45dd2d013b461389b40008"]/ul/li[11]').click
+    ##ä»¥ä¸Šå®šä½é¢„ç®—æ¨¡æ¿å®šä¹‰
+    end
+
+    def locate_columnset()
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.find_element(:xpath,'//*[@id="tab_1_li"]').click
+    #ä»¥ä¸Šå®šä½æ–°å¢åˆ—é›†
+    end
+
+    def locate_rowset()
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.find_element(:xpath,'//*[@id="tab_2_li"]').click
+    end
+
+    def columnset_add(cid,cname,layout_style=3)
+      #å…¶ä¸­ï¼Œcidä¸ºåˆ—é›†ç¼–å·ï¼Œcnameä¸ºåˆ—é›†åç§°ï¼Œlayout_styleä¸ºå¸ƒå±€æ–¹å¼ï¼ˆ1ä¸ºå…¨éƒ¨ï¼Œ2ä¸ºåŠ¨æ€è¡Œï¼Œ3ä¸ºå›ºå®šè¡Œï¼Œé»˜è®¤ä¸º3ï¼‰
+      $driver.switch_to().frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
+      #ä»¥ä¸Šå®šä½æ–°å¢åˆ—é›†
+      $driver.find_element(:xpath,'//*[@id="templateColumnSetNumber"]').send_keys(cid)
+      $driver.find_element(:xpath,'//*[@id="templateColumnSetName"]').send_keys(cname)
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/select/option['+layout_style.to_s+']').click
+      $driver.find_element(:xpath,'//*[@id="saveButton"]').click
+    #è¾“å…¥é¡¶å±‚åˆ—é›†ä¿¡æ¯ä¿å­˜
+    end
+
+    def rowset_add(rid,rname,rabove)
+      #ridä¸ºè¡Œé›†ç¼–å·ï¼Œrnameä¸ºè¡Œé›†åç§°ï¼Œraboveä¸ºé¡¶çº§è¡Œåç§°
+      $driver.switch_to().frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[4]/div/div[2]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
+      #ä»¥ä¸Šå®šä½æ–°å¢è¡Œé›†
+      $driver.find_element(:xpath,'//*[@id="templateRowSetNumber"]').send_keys(rid)
+      $driver.find_element(:xpath,'//*[@id="templateRowSetName"]').send_keys(rname)
+      $driver.find_element(:xpath,'//*[@id="saveButton"]').click
+      #è¾“å…¥é¡¶å±‚è¡Œé›†ä¿¡æ¯ä¿å­˜
+      $driver.switch_to.frame("iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[2]/table/tbody/tr/td[2]/a').click
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="rowAbovePrompt"]').send_keys(rabove)
+      $driver.find_element(:xpath,'/html/body/form/div/div/div[3]/table/tfoot/tr/td/center/button').click
+      sleep 1
+    end
+
+    def rowadd(rlabel,rlength=15,rprecision=2,formula="")
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.switch_to.frame("iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[2]/table/tbody/tr/td[2]/img[2]').click
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'//*[@id="rowLabel"]').send_keys(rlabel)#è¡Œæ ‡é¢˜
+      $driver.find_element(:xpath,'//*[@id="labelIndentation"]').send_keys(rlength)#æ ‡é¢˜ç¼©è¿›é‡
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/span/input[2]').click#æ˜¯å¦å…è®¸æ‰‹å·¥å¡«å†™
+      $driver.find_element(:xpath,'//*[@id="numberPrecision"]').send_keys(rprecision)#æ•°å­—ç²¾åº¦
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[5]/td[2]/span/input').click#ä¸å¯ç”¨è®¡ç®—
+      $driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys(formula)#è®¡ç®—å…¬å¼
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[6]/td[2]/span/input').click#å¯ç”¨åˆ—ä¸Šçš„å…¬å¼
+      $driver.find_element(:xpath,'//*[@id="saveButtonId"]').click
+      $driver.switch_to.alert().accept()
+      sleep 1
+    end
+
+    def template_add(tid,tname,ttype=1,tbudget_type=2)
+      #ttypeä¸ºä¸ŠæŠ¥æ¨¡æ¿å’Œä¸‹è¾¾æ¨¡æ¿ï¼Œtidä¸ºæ¨¡æ¿ç¼–å·ï¼Œtnameä¸ºæ¨¡æ¿åç§°ï¼Œtbudget_typeä¸ºé¢„ç®—ç±»å‹
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click#æ–°å¢æ¨¡æ¿
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="templateNumber"]').send_keys(tid)#æ¨¡æ¿ç¼–å·
+      $driver.find_element(:xpath,'//*[@id="templateName"]').send_keys(tname)#æ¨¡æ¿åç§°
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/select/option['+ttype.to_s+']').click#æ¨¡æ¿ç±»å‹é¢„å®šä¹‰
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option['+tbudget_type.to_s+']').click#é¢„ç®—ç±»å‹
+      $driver.find_element(:xpath,'//*[@id="saveButton"]').click
+      $driver.switch_to.alert().accept()
+      sleep 2
+    end
+
+    def layout_stable_add(lid,lname,rowset,columnset)
+      #lidä¸ºå¸ƒå±€ç¼–å·ï¼Œlnameä¸ºå¸ƒå±€åç§°ï¼Œrowsetä¸ºè¡Œé›†åï¼Œcolumnsetä¸ºåˆ—é›†å
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[3]/div/ul/li/img').click#æ–°å¢å¸ƒå±€
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="templateLayoutNumber"]').send_keys(lid)#å¸ƒå±€åç§°
+      $driver.find_element(:xpath,'//*[@id="templateLayoutName"]').send_keys(lname)#å¸ƒå±€åç§°
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[3]').click#å›ºå®šè¡Œæ¨¡æ¿
+      $driver.find_element(:xpath,'//*[@id="templateRowSetIdImg"]').click#é€‰æ‹©è¡Œé›†
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe1")
+      $driver.find_element(:xpath,'//*[@id="templateRowSetNumber"]').send_keys(rowset)#è¾“å…¥è¡Œé›†ç¼–å·ç¡®å®šæŸ¥è¯¢
+      $driver.find_element(:xpath,'//*[@id="searchButton"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#é€‰å–è¡Œé›†
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="templateColumnSetIdImg"]').click#é€‰æ‹©åˆ—é›†
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe1")
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(columnset)#è¾“å…¥åˆ—é›†ç¼–å·æŸ¥è¯¢
+      $driver.find_element(:xpath,'//*[@id="searchButton"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#é€‰å–åˆ—é›†
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="saveButton"]').click
+      $driver.switch_to.alert().accept()
+      sleep 2
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'//*[@id="refreshButton"]').click
+    end
+
+    def layout_dynamic_add(lid,lname,columnset)
+      #lidä¸ºå¸ƒå±€ç¼–å·
+      #lnameä¸ºå¸ƒå±€åç§°ï¼Œcolumnsetä¸ºåˆ—é›†å
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'/html/body/form/div[3]/div/ul/li/img').click#æ–°å¢å¸ƒå±€
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="templateLayoutNumber"]').send_keys(lid)#å¸ƒå±€åç§°
+      $driver.find_element(:xpath,'//*[@id="templateLayoutName"]').send_keys(lname)#å¸ƒå±€åç§°
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click
+      $driver.find_element(:xpath,'//*[@id="templateColumnSetIdImg"]').click#é€‰æ‹©åˆ—é›†
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe1")
+      $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(columnset)#è¾“å…¥åˆ—é›†ç¼–å·æŸ¥è¯¢
+      $driver.find_element(:xpath,'//*[@id="searchButton"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click#é€‰å–åˆ—é›†ç¡®å®š
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
+      sleep 1
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("arch_popup_iframe0")
+      $driver.find_element(:xpath,'//*[@id="saveButton"]').click
+      $driver.switch_to.alert().accept()
+      sleep 2
+      $driver.switch_to.default_content()
+      $driver.switch_to.frame("i_right")
+      $driver.switch_to.frame("tab_inner_iframe")
+      $driver.find_element(:xpath,'//*[@id="refreshButton"]').click
+    end
+
+  end
 end

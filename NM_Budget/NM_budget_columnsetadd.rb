@@ -1,5 +1,5 @@
-#encoding : gbk
-$DEBUG = 1 
+#encoding:utf-8
+$DEBUG = 1
 require 'selenium-webdriver'
 require 'rubygems'
 require './NM_login'
@@ -12,72 +12,73 @@ sleep 1
 temp=Template::Template.new
 temp.locate_budget_template()
 temp.locate_columnset()
-temp.columnset_add('LJ31','LJ31',3)
+temp.columnset_add('justfortest','justfortest',3)
 alert=Alert::Alert.new
 alert.accept()
 sleep 1
-#È·¶¨±£´æ³É¹¦
-array=["Ò»ÔÂ","¶şÔÂ","ÈıÔÂ"]
+#ç¡®å®šä¿å­˜æˆåŠŸ
+array=["ä¸€æœˆ","äºŒæœˆ","ä¸‰æœˆ"]
 length=array.length
 puts length
 i=0
 while i <length do
-j=i+7
-$driver.switch_to.frame("addListIframe")
-$driver.find_element(:xpath,'//*[@id="addButton"]').click
-$driver.switch_to.default_content()
-$driver.switch_to.frame("arch_popup_iframe0")
-$driver.switch_to.frame("tab_inner_iframe")
-$driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys(array[i])#ÁĞ±êÌâ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#ÊÇ·ñ¶àÁĞ±êÌâ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#ÊÇ·ñ±ØÌîÏî
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#ÊÇ·ñÏÔÊ¾
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#ÊÇ·ñÔÊĞíÊÖ¹¤ÌîĞ´
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[5]').click#Çé¾°
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option['+j.to_s+']').click#ÖµÀàĞÍ
-#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr[2]/td[2]/select/option[2]').click#Î³¶ÈÀàĞÍ
-#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr[2]/td[4]/select/option[4]').click#Î³¶È¼¯
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option').click#ÊÇ·ñÆôÓÃ¼ÆËã
-$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys("")#ÊäÈë¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#²»ÆôÓÃĞĞÉÏµÄ¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'//*[@id="saveButton"]').click#±£´æ
-#±£´æ×ÓÁĞ£¬Í¨¹ıÆ´½ÓxpathÀ´Âú×ãÇé¾°ÖµµÄÑ­»·
-alert.accept()
-sleep 2
-#$driver.find_element(:xpath,'//*[@id="tab_2_li"]').click
-#$driver.find_element(:xpath,'//*[@id="addNewColumnMapping"]').click
-#$driver.find_element(:xpath,'//*[@id="selfConsolidationFlag"]').click
-#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[4]').click
-#$driver.find_element(:xpath,'//*[@id="saveButton"]').click
-#$driver.switch_to.alert().accept()
-#$driver.find_element(:xpath,'//*[@id="closeButton"]').click
-$driver.find_element(:xpath,'//*[@id="closeButton"]').click#È¡Ïû·µ»ØÌí¼ÓÁĞÒ³Ãæ
-sleep 1
-$driver.switch_to.default_content()
-$driver.switch_to.frame("i_right")
-$driver.switch_to.frame("tab_inner_iframe")
-i=i+1
+  j=i+7
+  $driver.switch_to.frame("addListIframe")
+  $driver.find_element(:xpath,'//*[@id="addButton"]').click
+  $driver.switch_to.default_content()
+  $driver.switch_to.frame("arch_popup_iframe0")
+  $driver.switch_to.frame("tab_inner_iframe")
+  $driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys(array[i])#åˆ—æ ‡é¢˜
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#æ˜¯å¦å¤šåˆ—æ ‡é¢˜
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#æ˜¯å¦å¿…å¡«é¡¹
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#æ˜¯å¦æ˜¾ç¤º
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#æ˜¯å¦å…è®¸æ‰‹å·¥å¡«å†™
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[5]').click#æƒ…æ™¯
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option['+j.to_s+']').click#å€¼ç±»å‹
+  #$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr[2]/td[2]/select/option[2]').click#çº¬åº¦ç±»å‹
+  #$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr[2]/td[4]/select/option[4]').click#çº¬åº¦é›†
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option').click#æ˜¯å¦å¯ç”¨è®¡ç®—
+  $driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys("")#è¾“å…¥è®¡ç®—å…¬å¼
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#ä¸å¯ç”¨è¡Œä¸Šçš„è®¡ç®—å…¬å¼
+  $driver.find_element(:xpath,'//*[@id="saveButton"]').click#ä¿å­˜
+  #ä¿å­˜å­åˆ—ï¼Œé€šè¿‡æ‹¼æ¥xpathæ¥æ»¡è¶³æƒ…æ™¯å€¼çš„å¾ªç¯
+  sleep 1
+  alert.accept()
+  sleep 2
+  #$driver.find_element(:xpath,'//*[@id="tab_2_li"]').click
+  #$driver.find_element(:xpath,'//*[@id="addNewColumnMapping"]').click
+  #$driver.find_element(:xpath,'//*[@id="selfConsolidationFlag"]').click
+  #$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[4]').click
+  #$driver.find_element(:xpath,'//*[@id="saveButton"]').click
+  #$driver.switch_to.alert().accept()
+  #$driver.find_element(:xpath,'//*[@id="closeButton"]').click
+  $driver.find_element(:xpath,'//*[@id="closeButton"]').click#å–æ¶ˆè¿”å›æ·»åŠ åˆ—é¡µé¢
+  sleep 1
+  $driver.switch_to.default_content()
+  $driver.switch_to.frame("i_right")
+  $driver.switch_to.frame("tab_inner_iframe")
+  i=i+1
 end
 $driver.switch_to.frame("addListIframe")
 $driver.find_element(:xpath,'//*[@id="addButton"]').click
 $driver.switch_to.default_content()
 $driver.switch_to.frame("arch_popup_iframe0")
 $driver.switch_to.frame("tab_inner_iframe")
-$driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys("ÉÏ±¨½ğ¶î")
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#ÊÇ·ñ¶àÁĞ±êÌâ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#ÊÇ·ñ±ØÌîÏî
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#ÊÇ·ñÏÔÊ¾
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#ÊÇ·ñÔÊĞíÊÖ¹¤ÌîĞ´
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[5]').click#Çé¾°
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option[2]').click#ÖµÀàĞÍ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option[2]').click#ÊÇ·ñÆôÓÃ¼ÆËã
-$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys('C["Ò»ÔÂ"]+C["¶şÔÂ"]+C["ÈıÔÂ"]')#ÊäÈë¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#²»ÆôÓÃĞĞÉÏµÄ¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'//*[@id="saveButton"]').click#±£´æ
-#¶¨ÒåÉÏ±¨½ğ¶îµÄÁĞ
+$driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys("ä¸ŠæŠ¥é‡‘é¢")
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#æ˜¯å¦å¤šåˆ—æ ‡é¢˜
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#æ˜¯å¦å¿…å¡«é¡¹
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#æ˜¯å¦æ˜¾ç¤º
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#æ˜¯å¦å…è®¸æ‰‹å·¥å¡«å†™
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[5]').click#æƒ…æ™¯
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option[2]').click#å€¼ç±»å‹
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option[2]').click#æ˜¯å¦å¯ç”¨è®¡ç®—
+$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys('C["ä¸€æœˆ"]+C["äºŒæœˆ"]+C["ä¸‰æœˆ"]')#è¾“å…¥è®¡ç®—å…¬å¼
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#ä¸å¯ç”¨è¡Œä¸Šçš„è®¡ç®—å…¬å¼
+$driver.find_element(:xpath,'//*[@id="saveButton"]').click#ä¿å­˜
+#å®šä¹‰ä¸ŠæŠ¥é‡‘é¢çš„åˆ—
 alert.accept()
 sleep 1
-$driver.find_element(:xpath,'//*[@id="closeButton"]').click#È¡Ïû·µ»ØÌí¼ÓÁĞÒ³Ãæ
+$driver.find_element(:xpath,'//*[@id="closeButton"]').click#å–æ¶ˆè¿”å›æ·»åŠ åˆ—é¡µé¢
 sleep 1
 $driver.switch_to.default_content()
 $driver.switch_to.frame("i_right")
@@ -87,42 +88,42 @@ $driver.find_element(:xpath,'//*[@id="addButton"]').click
 $driver.switch_to.default_content()
 $driver.switch_to.frame("arch_popup_iframe0")
 $driver.switch_to.frame("tab_inner_iframe")
-$driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys("±¸×¢")
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#ÊÇ·ñ¶àÁĞ±êÌâ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#ÊÇ·ñ±ØÌîÏî
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#ÊÇ·ñÏÔÊ¾
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#ÊÇ·ñÔÊĞíÊÖ¹¤ÌîĞ´
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[2]').click#ÁĞÀàĞÍ
-#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option[2]').click#ÖµÀàĞÍ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[6]/select/option[4]').click#Êı¾İÀàĞÍ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option').click#ÊÇ·ñÆôÓÃ¼ÆËã
-$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys("")#ÊäÈë¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#²»ÆôÓÃĞĞÉÏµÄ¼ÆËã¹«Ê½
-$driver.find_element(:xpath,'//*[@id="saveButton"]').click#±£´æ
+$driver.find_element(:xpath,'//*[@id="columnLabel"]').send_keys("å¤‡æ³¨")
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[4]/div/select/option').click#æ˜¯å¦å¤šåˆ—æ ‡é¢˜
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr/td[6]/div/select/option[2]').click#æ˜¯å¦å¿…å¡«é¡¹
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#æ˜¯å¦æ˜¾ç¤º
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#æ˜¯å¦å…è®¸æ‰‹å·¥å¡«å†™
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[2]').click#åˆ—ç±»å‹
+#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option[2]').click#å€¼ç±»å‹
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[6]/select/option[4]').click#æ•°æ®ç±»å‹
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option').click#æ˜¯å¦å¯ç”¨è®¡ç®—
+$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys("")#è¾“å…¥è®¡ç®—å…¬å¼
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#ä¸å¯ç”¨è¡Œä¸Šçš„è®¡ç®—å…¬å¼
+$driver.find_element(:xpath,'//*[@id="saveButton"]').click#ä¿å­˜
 alert.accept()
 sleep 1
 $driver.find_element(:xpath,'//*[@id="closeButton"]').click
 sleep 1
 column=1
 while column<5 do
-$driver.switch_to.default_content()
-$driver.switch_to.frame("i_right")
-$driver.switch_to.frame("tab_inner_iframe")
-$driver.switch_to.frame("addListIframe")
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tfoot/tr[3]/td['+column.to_s+']/a').click
-$driver.switch_to.default_content()
-$driver.switch_to.frame("arch_popup_iframe0")
-$driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#»ã×ÜÓ³ÉäÁĞ
-$driver.switch_to.frame("tab_inner_iframe")
-$driver.find_element(:xpath,'/html/body/form/center/button').click#ĞÂÔöÓ³ÉäÁĞ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#ÊÇ·ñ×Ô»ã×Ü
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[4]').click#»ã×ÜÌõ¼ş
-$driver.find_element(:xpath,'/html/body/form/div/div/center/button').click
-alert.accept()
-sleep 1
-$driver.find_element(:xpath,'//*[@id="closeButton"]').click
-sleep 1
-column=column+1
+  $driver.switch_to.default_content()
+  $driver.switch_to.frame("i_right")
+  $driver.switch_to.frame("tab_inner_iframe")
+  $driver.switch_to.frame("addListIframe")
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tfoot/tr[3]/td['+column.to_s+']/a').click
+  $driver.switch_to.default_content()
+  $driver.switch_to.frame("arch_popup_iframe0")
+  $driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#æ±‡æ€»æ˜ å°„åˆ—
+  $driver.switch_to.frame("tab_inner_iframe")
+  $driver.find_element(:xpath,'/html/body/form/center/button').click#æ–°å¢æ˜ å°„åˆ—
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#æ˜¯å¦è‡ªæ±‡æ€»
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[4]').click#æ±‡æ€»æ¡ä»¶
+  $driver.find_element(:xpath,'/html/body/form/div/div/center/button').click
+  alert.accept()
+  sleep 1
+  $driver.find_element(:xpath,'//*[@id="closeButton"]').click
+  sleep 1
+  column=column+1
 end
 $driver.switch_to.default_content()
 $driver.switch_to.frame("i_right")
@@ -131,14 +132,13 @@ $driver.switch_to.frame("addListIframe")
 $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tfoot/tr[3]/td[5]/a').click
 $driver.switch_to.default_content()
 $driver.switch_to.frame("arch_popup_iframe0")
-$driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#»ã×ÜÓ³ÉäÁĞ
+$driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#æ±‡æ€»æ˜ å°„åˆ—
 $driver.switch_to.frame("tab_inner_iframe")
-$driver.find_element(:xpath,'/html/body/form/center/button').click#ĞÂÔöÓ³ÉäÁĞ
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#ÊÇ·ñ×Ô»ã×Ü
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[2]').click#»ã×ÜÌõ¼ş
+$driver.find_element(:xpath,'/html/body/form/center/button').click#æ–°å¢æ˜ å°„åˆ—
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#æ˜¯å¦è‡ªæ±‡æ€»
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[2]').click#æ±‡æ€»æ¡ä»¶
 $driver.find_element(:xpath,'/html/body/form/div/div/center/button').click
 alert.accept()
 sleep 1
 $driver.find_element(:xpath,'//*[@id="closeButton"]').click
 sleep 1
-

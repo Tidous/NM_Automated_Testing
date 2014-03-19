@@ -10,5 +10,9 @@ ie.login("admin","1234")
 sleep 1
 
 budget=Budget::Budget.new
-budget.locate_budget_making("yd")
-budget.annual_department_budget_add("xq20140307","本部","秘书",3,1,1)
+budget.locate_budget_making("mc")
+i=1
+while i<14 do
+  budget.period_company_budget_add("xq20140307","本部",2,1,i,1,1)
+  i=i+1
+end

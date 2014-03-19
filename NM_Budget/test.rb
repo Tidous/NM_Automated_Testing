@@ -1,5 +1,5 @@
-#encoding : gbk
-$DEBUG = 1 
+#encoding:utf-8
+$DEBUG = 1
 require 'selenium-webdriver'
 require 'rubygems'
 require './NM_login'
