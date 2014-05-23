@@ -104,7 +104,7 @@ module Template
       $driver.switch_to.default_content()
       $driver.switch_to.frame("i_right")
       $driver.switch_to.frame("tab_inner_iframe")
-      $driver.find_element(:xpath,'/html/body/form/div[3]/div/ul/li/img').click#新增布局
+      $driver.find_element(:xpath,'/html/body/form/fieldset/div[2]/div/ul/li/img').click#新增布局
       sleep 1
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe0")

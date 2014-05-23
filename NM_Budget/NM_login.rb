@@ -19,6 +19,7 @@ module Login
     end
 
     def refresh()
+      sleep 1
       $driver.switch_to.default_content()
       $driver.switch_to.frame("i_top")
       $driver.find_element(:xpath,'/html/body/div/div[2]/div/div/div/div/ul/li[2]/a').click
@@ -30,6 +31,10 @@ module Login
       $driver.switch_to.frame("i_top")
       $driver.find_element(:xpath,'/html/body/div/div[2]/div/div/div/div/ul/li[2]/a[2]').click
       sleep 1
+    end
+    
+    def quit()
+      $driver.quit()
     end
   end
 end

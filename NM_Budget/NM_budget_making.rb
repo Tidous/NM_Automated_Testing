@@ -52,8 +52,8 @@ module Budget
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(tid)
       #输入模板id查询
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
-      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[3]/td/input').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       #选择预算模板确定
       sleep 1
@@ -65,7 +65,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(cname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -76,7 +76,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(dname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -109,8 +109,8 @@ module Budget
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(tid)
       #输入模板id查询
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
-      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[3]/td/input').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       #选择预算模板确定
       sleep 1
@@ -122,7 +122,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(cname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -153,8 +153,8 @@ module Budget
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(tid)
       #输入模板id查询
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
-      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[3]/td/input').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       #选择预算模板确定
       sleep 1
@@ -173,7 +173,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(cname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -184,7 +184,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(dname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -215,8 +215,8 @@ module Budget
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(tid)
       #输入模板id查询
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
-      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[3]/td/input').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
+      $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       #选择预算模板确定
       sleep 1
@@ -235,7 +235,7 @@ module Budget
       $driver.switch_to.default_content()
       $driver.switch_to.frame("arch_popup_iframe1")
       $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/div/table/tbody/tr/td[2]/input').send_keys(cname)
-      $driver.find_element(:xpath,'//*[@id="btnQueryID1"]').click
+      $driver.find_element(:xpath,'//*[@id="btnQueryID2"]').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div[2]/table/tbody/tr[2]/td/input').click
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       sleep 1
@@ -243,8 +243,7 @@ module Budget
       $driver.switch_to.frame("arch_popup_iframe0")
       $driver.find_element(:xpath,'//*[@id="saveButton"]').click
       sleep 1
-      alert=Alert::Alert.new
-      alert.accept
+      $driver.switch_to.alert().accept()
       sleep 1
     end
   end
