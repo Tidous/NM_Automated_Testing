@@ -5,6 +5,7 @@ require 'rubygems'
 require './NM_login'
 require './NM_locate_budget_template'
 require './NM_alert'
+require 'test/unit'
 
 ie=Login::Login.new
 ie.login("admin","1234")
@@ -12,7 +13,7 @@ sleep 1
 temp=Template::Template.new
 temp.locate_budget_template()
 temp.locate_columnset()
-temp.columnset_add('justfortest','justfortest',3)
+temp.columnset_add('justfortest33','justfortest33',2)
 alert=Alert::Alert.new
 alert.accept()
 sleep 1
@@ -72,7 +73,20 @@ $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/
 $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[2]/select/option[5]').click#情景
 $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[2]/table/tbody/tr/td[4]/select/option[2]').click#值类型
 $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr/td[2]/select/option[2]').click#是否启用计算
-$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys('C["一月"]+C["二月"]+C["三月"]')#输入计算公式
+$driver.find_element(:xpath,'//*[@id="calculationFormulaText"]').send_keys('')#输入计算公式
+$driver.find_element(:xpath,'//*[@id="calculationFormulaHref"]').click#点击选择按钮
+$driver.switch_to().default_content()
+$driver.switch_to().frame("arch_popup_iframe1")
+$driver.find_element(:xpath,'//*[@id="tree_2_span"]').click
+$driver.find_element(:xpath,'//*[@id="button_add"]').click
+$driver.find_element(:xpath,'//*[@id="tree_3_span"]').click
+$driver.find_element(:xpath,'//*[@id="button_add"]').click
+$driver.find_element(:xpath,'//*[@id="tree_4_span"]').click
+$driver.find_element(:xpath,'//*[@id="button_check_ok"]').click#输入计算公式
+sleep 1
+$driver.switch_to.default_content()
+$driver.switch_to.frame("arch_popup_iframe0")
+$driver.switch_to.frame("tab_inner_iframe")
 $driver.find_element(:xpath,'/html/body/form/div/div/fieldset[3]/table/tbody/tr[2]/td[2]/span/input[2]').click#不启用行上的计算公式
 $driver.find_element(:xpath,'//*[@id="saveButton"]').click#保存
 #定义上报金额的列
@@ -116,8 +130,9 @@ while column<5 do
   $driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#汇总映射列
   $driver.switch_to.frame("tab_inner_iframe")
   $driver.find_element(:xpath,'/html/body/form/center/button').click#新增映射列
-  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#是否自汇总
-  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[4]').click#汇总条件
+  sleep 0.5
+  #$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#是否自汇总
+  $driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[2]').click#汇总条件
   $driver.find_element(:xpath,'/html/body/form/div/div/center/button').click
   alert.accept()
   sleep 1
@@ -135,10 +150,23 @@ $driver.switch_to.frame("arch_popup_iframe0")
 $driver.find_element(:xpath,'/html/body/div/div/div[2]/div[2]/div/ul/li[3]').click#汇总映射列
 $driver.switch_to.frame("tab_inner_iframe")
 $driver.find_element(:xpath,'/html/body/form/center/button').click#新增映射列
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#是否自汇总
-$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[3]/td[4]/select/option[2]').click#汇总条件
+#$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[2]/select/option[2]').click#是否自汇总
+$driver.find_element(:xpath,'/html/body/form/div/div/fieldset/table/tbody/tr[2]/td[4]/select/option[3]').click#汇总条件
 $driver.find_element(:xpath,'/html/body/form/div/div/center/button').click
 alert.accept()
 sleep 1
 $driver.find_element(:xpath,'//*[@id="closeButton"]').click
 sleep 1
+class Test_method<Test::Unit::TestCase
+  def test_operate
+    $driver.switch_to.default_content()
+    $driver.switch_to.frame("i_right")
+    $driver.switch_to.frame("tab_inner_iframe")
+    $driver.find_element(:xpath,'//*[@id="validationButton"]').click
+    sleep 1
+    alert_text=$driver.switch_to().alert().text()
+    print(alert_text)
+    assert_equal("校验通过！",alert_text,"Pass")
+    $driver.switch_to.alert().accept()
+  end
+end

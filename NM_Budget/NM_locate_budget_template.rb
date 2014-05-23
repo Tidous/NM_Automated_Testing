@@ -30,8 +30,8 @@ module Template
       $driver.find_element(:xpath,'//*[@id="tab_2_li"]').click
     end
 
-    def columnset_add(cid,cname,layout_style=3)
-      #其中，cid为列集编号，cname为列集名称，layout_style为布局方式（1为全部，2为动态行，3为固定行，默认为3）
+    def columnset_add(cid,cname,layout_style=2)
+      #其中，cid为列集编号，cname为列集名称，layout_style为布局方式（1为动态行，2为固定行，默认为2）
       $driver.switch_to().frame("tab_inner_iframe")
       $driver.find_element(:xpath,'/html/body/form/div[2]/div/div[3]/div/table/tbody/tr/td/table/tbody/tr/td[2]/button').click
       #以上定位新增列集
